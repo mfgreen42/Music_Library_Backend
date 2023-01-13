@@ -8,15 +8,21 @@ import AddSongs from './Components/AddSongs/AddSongs';
 function App() {
 
   const [songs, setSongs] = useState([]);
-  const [search, setSearch] =useState([])
+  const [search, setSearch] =useState([]);
+  const [addSong, setAddSong] =useState([]);
 
   useEffect( () => {
     getAllSongs()
   }, []);
 
+  function addSongToTable(songs) {
+    let tempSong = [songs, ...addSong];
+    setAddSong(tempSong);
+  }
+
 async function getAllSongs(){
   const response = await axios.get('http://127.0.0.1:8000/api/music/');
-  // console.log(response.data);
+  console.log(response.data);
   setSongs(response.data)
 }
 
@@ -25,10 +31,10 @@ async function getAllSongs(){
   return (
     <div >
       <NavBar/>
-      <AddSongs/>
+      <AddSongs addNewSongProperty = {addSongToTable}/>
       <SearchBar setSearch={setSearch}/>
       <MusicTable parentSongs={songs}/>
-      {/* <button onClick={() => getAllSongs()}>Get All Songs</button> */}
+      <button onClick={() => getAllSongs()}>Get All Songs</button>
     </div>
   );
 }
