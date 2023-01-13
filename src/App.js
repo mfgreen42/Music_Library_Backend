@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavBar from './Components/NavBar/navBar';
 import MusicTable from './Components/MusicTable/musicTable';
 import SearchBar from './Components/SearchBar/searchBar';
-
+import AddSongs from './Components/AddSongs/AddSongs';
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
 
 async function getAllSongs(){
   const response = await axios.get('http://127.0.0.1:8000/api/music/');
-  console.log(response.data);
+  // console.log(response.data);
   setSongs(response.data)
 }
 
@@ -25,7 +25,8 @@ async function getAllSongs(){
   return (
     <div >
       <NavBar/>
-      <SearchBar/>
+      <AddSongs/>
+      <SearchBar setSearch={setSearch}/>
       <MusicTable parentSongs={songs}/>
       {/* <button onClick={() => getAllSongs()}>Get All Songs</button> */}
     </div>

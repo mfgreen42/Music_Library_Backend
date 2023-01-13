@@ -11,20 +11,14 @@ const SearchBar = (props) => {
 
     
     return ( 
-
-        <div>
-            <div  className = 'search-bar'>
+            <form  className = 'search-bar'>
             <input 
-                type='search' 
-                placeholder= 'Search' 
+                type='text' 
+                placeholder= 'Search'
+                onChange={(event) => props.setSearch(event.target.value)}
             />
-            </div>
-            <div className="search-button">
-                <button>Search</button>
-            </div>
-        </div>
-
-        
+                <button className="search-button">Search</button>
+            </form>
      );
 };
  
