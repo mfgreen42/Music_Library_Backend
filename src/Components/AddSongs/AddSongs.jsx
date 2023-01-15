@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 
 
 
@@ -9,7 +8,6 @@ const AddSongs = (props) => {
     const [album, setAlbum] = useState("");
     const [releaseDate, setReleaseDate] = useState("");
     const [genre, setGenre] = useState("");
-    const [addSong, setAddSong] =useState([]);
 
     function handleAdd(event){
         event.preventDefault()
@@ -21,20 +19,14 @@ const AddSongs = (props) => {
             genre: genre,
         };
         console.log('new entry', newEntry);
-        addSongToTable(newEntry)
-        console.log('add song to table')
-        // props.addNewSongProperty(newEntry);
-        // props.SetSongs(response.data)
+
+        props.parentAddSong(newEntry);
 
     }
-    function addSongToTable(songs) {
-        let tempSong = [songs, ...addSong];
-        setAddSong(tempSong);
-      }
     
 
     return ( 
-<form onSubmit={(event) => handleAdd(event)}>
+<form onSubmit={handleAdd}>
     <label>Title</label>
     <input type='text' value={title} onChange={(event) => setTitle(event.target.value)} />
     <label>Artist</label>
