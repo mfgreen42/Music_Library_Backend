@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import axios from "axios";
 
 
 const AddSongs = (props) => {
@@ -8,6 +8,8 @@ const AddSongs = (props) => {
     const [album, setAlbum] = useState("");
     const [releaseDate, setReleaseDate] = useState("");
     const [genre, setGenre] = useState("");
+    const [addSongs, setAddSongs] =useState([]);
+
 
     function handleAdd(event){
         event.preventDefault()
@@ -19,10 +21,18 @@ const AddSongs = (props) => {
             genre: genre,
         };
         console.log('new entry', newEntry);
+        addSongToTable(newEntry);
 
-        props.parentAddSong(newEntry);
-
+        async function addSongToTable(addSong) {
+            const response = await axios.post('http://127.0.0.1:8000/api/music/', addSong);
+            console.log(response.data)
+            let tempSong = [addSong, ...addSongs];
+            console.log('temp song', tempSong,)
+            setAddSongs(response);
+          }
+          
     }
+
     
 
     return ( 

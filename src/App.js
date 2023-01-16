@@ -9,7 +9,6 @@ function App() {
 
   const [songs, setSongs] = useState([]);
   const [search, setSearch] =useState([]);
-  const [addSongs, setAddSongs] =useState([]);
 
   useEffect( () => {
     getAllSongs()
@@ -22,10 +21,6 @@ async function getAllSongs(){
   setSongs(response.data)
 }
 
-function addSongToTable(addSong) {
-  let tempSong = [addSong, ...addSongs];
-  setAddSongs(tempSong);
-}
 
 
 
@@ -33,7 +28,7 @@ function addSongToTable(addSong) {
   return (
     <div >
       <NavBar/>
-      <AddSongs parentAddSong ={addSongToTable}/>
+      <AddSongs />
       <SearchBar setSearch={setSearch}/>
       <MusicTable parentSongs={songs}/>
       <button onClick={() => getAllSongs()}>Get All Songs</button>
