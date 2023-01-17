@@ -1,31 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import MusicTable from '../MusicTable/musicTable';
 import axios from 'axios';
-
+import MusicTable from '../MusicTable/musicTable';
 
 
 const SearchBar = (props) => {
 
-    const [searchResults, setSearchResults] =useState('');
+    const [allResults, setAllResults] =useState([]);
+    const [filteredData, setFilteredData] = useState(allResults);
 
+    const handleChange = (props) => {
+
+    }
+
+    useEffect(() => {
+        axios('http://127.0.0.1:8000/api/music/')
+        .then(response => {
+        console.log(response.data)
+        setAllResults(response.data);
+        setFilteredData(response.data);
+        })
+        .catch(error => {
+        console.log('Error getting fake data: '+error);
+        })
+        }, []); 
         
-    
-        async function handleSearch(search) {
-            const response = await axios.get('http://127.0.0.1:8000/api/music/?title=${search}' )
-            console.log('response from call', response.data)
-            setSearchResults(response.data)
-    
+    const handleSearch = (event) => {
+        let value = event.target.value.toLowerCase();
+        let result = [];
+        console.log(value);
+        result = allResults.filter((data) => {
+        return data.title.search(value) !== -1;
+        });
+        setFilteredData(result);
         }
-
-        handleSearch()
     
-    
-        
-
     return ( 
-            <form onChange={handleSearch} >
-            <input type='text' placeholder= 'Search' />
-            </form>
+        <div className = 'search-bar'>
+            <label>Search:</label>
+            <input type='text' onChange={(event) => handleSearch(event)} />
+        </div>
+        
      );
 };
  
