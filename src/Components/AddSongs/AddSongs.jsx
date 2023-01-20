@@ -8,7 +8,6 @@ const AddSongs = (props) => {
     const [album, setAlbum] = useState("");
     const [releaseDate, setReleaseDate] = useState("");
     const [genre, setGenre] = useState("");
-    const [addSongs, setAddSongs] =useState([]);
 
 
     function handleAdd(event){
@@ -23,20 +22,19 @@ const AddSongs = (props) => {
         console.log('new entry', newEntry);
         addSongToTable(newEntry);
 
-        async function addSongToTable(addSong) {
-            const response = await axios.post('http://127.0.0.1:8000/api/music/', addSong);
-            console.log(response.data)
-            let tempSong = [addSong, ...addSongs];
-            console.log('temp song', tempSong,)
-            setAddSongs(response);
-          }
           
     }
 
-    
+    async function addSongToTable(addSong) {
+        const response = await axios.post('http://127.0.0.1:8000/api/music/', addSong);
+        if (response.status === 201) {
+            await props.parentAllSongs();
+        }
+      }
+
 
     return ( 
-<form onSubmit={handleAdd}>
+<form onSubmit={(event) => handleAdd(event)}>
     <label>Title</label>
     <input type='text' value={title} onChange={(event) => setTitle(event.target.value)} />
     <label>Artist</label>
