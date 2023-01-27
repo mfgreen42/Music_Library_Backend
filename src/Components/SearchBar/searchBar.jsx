@@ -1,41 +1,32 @@
 import React, {  useState } from 'react';
 
-const SearchBar = (props, ) => {
+const SearchBar = ({setSongs, songs} ) => {
 
-    const [searchInput, setSearchInput] = useState("");
+    const [searchCriteria, setSearchCriteria] =useState('')
 
-    const allTheSongs = props.songsToSearch
-    debugger
-    console.log('allTheSongs:', allTheSongs)
 
-    // const handleChange = (event) => {
-    //     event.preventDefault();
-    //     debugger
-    //     setSearchInput(event.target.value);
-    // };
-
-    function searchingSongs() {
-        if (searchInput.length >0) {
-            let results = allTheSongs.filter(function (e){
-                if (e.searchInput === props.songsToSearch){
-                    return true;
-                }else {
-                    return false;
-                }
-            })
-   console.log('results of search:', results)
-   return results
-    }}
+    const handleSearch = (event) => {
+        event.preventDefault();
+        let results = songs.filter((el)=> {
+            
+            if (el.songs.includes(searchCriteria)){
+                return true;
+            }
+    })
+    setSongs(results)
+      } 
 
     return ( 
-            <form onSubmit={(event) => searchingSongs(event)}>
-                {/* <label>Search</label> */}
-                <input type='text' placeholder= 'Search ' value={searchInput} onChange = {(event) => setSearchInput(event.target.value)}/>
-                <button>Submit Search</button>
+            <form onSubmit={(event) => handleSearch(event)}>
+                <input type='text' 
+                placeholder= 'Search ' 
+                value={searchCriteria} 
+                onChange = {(event) => setSearchCriteria(event.target.value)}/>
+                <button type = 'submit'>Search</button>
             </form>
     
      );
-};
+}
  
 export default SearchBar;
 

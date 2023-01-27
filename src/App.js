@@ -8,7 +8,7 @@ import axios from 'axios';
 function App() {
 
   const [songs, setSongs] = useState([]);
-  debugger
+  // debugger
   console.log('setSongs array:', setSongs.data)
 
   useEffect( () => {
@@ -19,7 +19,7 @@ function App() {
 async function getAllSongs(){
   const response = await axios.get('http://127.0.0.1:8000/api/music/');
   console.log('song list', response.data);
-  debugger
+  // debugger
   setSongs(response.data)
   console.log('setSongs from async:',setSongs)
 
@@ -32,7 +32,7 @@ async function getAllSongs(){
     <div >
       <NavBar/>
       <AddSongs parentAllSongs = {getAllSongs}/>
-      <SearchBar  songsToSearch = {songs} setSongs = {setSongs}/>
+      <SearchBar  songs = {songs} setSongs = {setSongs}/>
       <MusicTable songs = {songs}/>
     </div>
   );
