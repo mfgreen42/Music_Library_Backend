@@ -5,7 +5,7 @@ const MusicTable = (props) => {
 
     return ( 
         <div >
-            <table striped bordered hover variant="dark">
+            <table>
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -13,6 +13,7 @@ const MusicTable = (props) => {
                         <th>Album</th>
                         <th>Release Date</th>
                         <th>Genre</th>
+                        
                     </tr>
                 </thead>
                 <tbody>

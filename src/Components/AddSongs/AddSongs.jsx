@@ -34,7 +34,8 @@ const AddSongs = (props) => {
 
 
     return ( 
-<form onSubmit={(event) => handleAdd(event)}>
+        <form onSubmit={(event) => handleAdd(event)} >
+    <h2>Add Music</h2>
     <label>Title</label>
     <input type='text' value={title} onChange={(event) => setTitle(event.target.value)} />
     <label>Artist</label>

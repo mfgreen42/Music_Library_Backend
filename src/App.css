@@ -11,12 +11,33 @@ body, html {
     background-size: cover;
   }
 
-
-
-.border-box {
+.card {
     border: 1px;
     border-style: solid;
     border-color: black;
+    background-color: #2D5D74;
 
-
+  }
+container-fluid {
+  
 }
+
+
+h2 {
+    size: 8px;
+    color: black
+    
+}
+
+table {
+  font-weight: bold; 
+}
+
+th {
+  font-size: larger;
+}
+
+ {
+  
+}
+
