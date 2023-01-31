@@ -29,14 +29,14 @@ function App() {
         <NavBar />
         <div className="row">
           <div className="col-md-6">
-            <div className="card">
+            <div className="song-holder">
               <AddSongs parentAllSongs={getAllSongs} className = 'card'/>
             </div>
           </div>
           <div className="col-md-6">
-            <div className="card">
+            <div className="song-holder">
               <SearchBar songs={songs} setSongs={setSongs} />
-              <MusicTable songs={songs} />
+              <MusicTable songs={songs} className= 'song-holder' />
             </div>
           </div>
         </div>

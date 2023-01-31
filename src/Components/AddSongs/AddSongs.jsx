@@ -42,11 +42,11 @@ const AddSongs = (props) => {
     <input type='text' value={artist} onChange={(event) => setArtist(event.target.value)} />
     <label>Album</label>
     <input type='text' value={album} onChange={(event) => setAlbum(event.target.value)} />
-    <label>Release Date</label>
-    <input type='date' value={releaseDate} onChange={(event) => setReleaseDate(event.target.value)} />
     <label>Genre</label>
     <input type='text' value={genre} onChange={(event) => setGenre(event.target.value)} />
-    <button type='submit'>Add Song</button>
+    <label>Release Date</label>
+    <input type='date' value={releaseDate} onChange={(event) => setReleaseDate(event.target.value)} />
+    <button className = 'add-song-button'type='submit'>Add Song</button>
 </form>
 
      );

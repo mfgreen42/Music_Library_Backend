@@ -30,7 +30,7 @@ const SearchBar = ({ setSongs, songs }) => {
         value={searchCriteria.toLowerCase()}
         onChange={(event) => setSearchCriteria(event.target.value)}
       />
-      <button type="submit">Search</button>
+      <button className = 'search-music-button' type="submit">Search</button>
     </form>
   );
 };

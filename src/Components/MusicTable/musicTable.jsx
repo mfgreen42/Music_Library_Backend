@@ -5,7 +5,7 @@ const MusicTable = (props) => {
 
     return ( 
         <div >
-            <table>
+            <table striped bordered hover>
                 <thead>
                     <tr>
                         <th>Title</th>
